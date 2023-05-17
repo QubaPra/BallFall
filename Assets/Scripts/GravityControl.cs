@@ -3,17 +3,16 @@ using UnityEngine;
 
 public class GravityControl : MonoBehaviour
 {
-    private Rigidbody ballRigidbody;
+    public GameObject ball;
     private Vector3 initialGravity;
 
     void Start()
-    {
-        ballRigidbody = GetComponent<Rigidbody>();
+    {       
         initialGravity = Physics.gravity;
     }
 
     void Update()
-    {
+    {       
         float xRotation = 0f;
         float yRotation = 0f;
 
@@ -22,6 +21,9 @@ public class GravityControl : MonoBehaviour
         {
             xRotation = Input.acceleration.x;
             yRotation = Input.acceleration.y;
+
+            Debug.Log("xRotation: " + xRotation);
+            Debug.Log("yRotation: " + yRotation);
         }
         else
         {

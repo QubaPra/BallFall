@@ -3,14 +3,17 @@ using UnityEngine;
 public class Lifter : MonoBehaviour
 {
     public float speed = 1.0f;
-    public float startPosY = -16f;
-    public float endPosY = -13f;
+    public float distance = 2f;
 
+    private float startPosY;
+    private float endPosY;
     private float targetPosY;
     private bool movingForward = true;
 
     private void Start()
     {
+        startPosY = transform.position.y;
+        endPosY = startPosY + distance;
         targetPosY = endPosY;
     }
 
@@ -22,7 +25,7 @@ public class Lifter : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, targetPosY, transform.position.z), step);
 
         // Check if the target position is reached
-        if (transform.position.y == targetPosY)
+        if (Mathf.Approximately(transform.position.y, targetPosY))
         {
             // Change direction
             if (movingForward)
